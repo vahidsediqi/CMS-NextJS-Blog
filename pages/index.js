@@ -1,13 +1,13 @@
 import Head from 'next/head'
-import { PostCard, PostWidget, Categories} from '../components/'
+import { PostWidget, PostCard, Categories } from '../components';
+
 const posts = [
-  {title: 'What is WordPress?', excerpt: 'Learn about wordpress and its usage 2021'},
-  {title: 'ReacJS from Zero to Hero', excerpt: 'In this post i will teach you ReactJs from zero to hero'},
-  {title: 'Reactjs vs NextJS?', excerpt: 'Learn about ReactJs vs NextJS'},
-  {title: 'How to earn money online?', excerpt: 'In this post i will show you how to earn money online'},
+{title: 'What is Reactjs', exc: 'Learn reactjs from hero to zero'},
+{title: 'What is nextJs', exc: 'Getting started with nextjs in 2021'},
+{title: 'Best wordpress themes', exc: 'There are top 10 wordpress themes to use'},
 ]
 
-export default function Home() {
+export default function Home(post){
   return (
     <div className="container mx-auto px-10 mb-8">
       <Head>
@@ -17,14 +17,19 @@ export default function Home() {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="lg:col-span-8 col-span-1">
-        { posts.map((post) => <PostCard post={post} key={post.title} />)}
+           {posts.map((post) => (
+             <PostCard post = {post} key={post.title}/> )
+           )}
         </div>
+
            <div className="lg:col-span-4 col-span-1">
              <div className="lg:sticky relative top-8">
-
+                 <PostWidget />
+                 <Categories />
              </div>
           </div>
       </div>
     </div>
   )
 }
+

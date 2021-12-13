@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-export const PostWidget = () => {
+ const PostWidget = () => {
     return (
         <div>
             Post Widgets
         </div>
     )
 }
+
+export default PostWidget;
