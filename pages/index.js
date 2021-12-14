@@ -1,13 +1,8 @@
 import Head from 'next/head'
-import { PostWidget, PostCard, Categories } from '../components';
+import { PostCard, Categories, PostWidget } from '../components';
+import { getPosts } from '../services';
 
-const posts = [
-{title: 'What is Reactjs', exc: 'Learn reactjs from hero to zero'},
-{title: 'What is nextJs', exc: 'Getting started with nextjs in 2021'},
-{title: 'Best wordpress themes', exc: 'There are top 10 wordpress themes to use'},
-]
-
-export default function Home(post){
+export default function Home({ posts }){
   return (
     <div className="container mx-auto px-10 mb-8">
       <Head>
@@ -17,9 +12,9 @@ export default function Home(post){
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="lg:col-span-8 col-span-1">
-           {posts.map((post) => (
-             <PostCard post = {post} key={post.title}/> )
-           )}
+            {posts.map((post) => (
+                <PostCard  post={post} />
+              ))}
         </div>
 
            <div className="lg:col-span-4 col-span-1">
@@ -32,4 +27,14 @@ export default function Home(post){
     </div>
   )
 }
+
+
+// Fetch data at build time
+export async function getStaticProps() {
+  const posts = (await getPosts()) || [];
+  return {
+    props: { posts },
+  };
+}
+
 
